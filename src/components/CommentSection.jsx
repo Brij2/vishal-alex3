@@ -2,67 +2,39 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function CommentSection({ movieId }) {
-  const [movie, setMovie] = useState(null);
   const [comments, setComments] = useState([]);
   const [commentText, setCommentText] = useState('');
-
-  // Fetch movie information on component mount
+  
   useEffect(() => {
-    async function fetchMovie() {
-      try {
-        const response = await axios.get(`https://www.omdbapi.com/?i=${movieId}&apikey=263d22d8&plot=short&r=json`);
-        setMovie(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    fetchMovie();
+    // Fetch comments from localStorage or set to an empty array if it doesn't exist
+    const existingComments = JSON.parse(localStorage.getItem(`comments_${movieId}`)) || [];
+    setComments(existingComments);
   }, [movieId]);
-
-  // Fetch comments on component mount
-  useEffect(() => {
-    async function fetchComments() {
-      try {
-        const response = await axios.get(`https://example.com/comments?movieId=${movieId}`);
-        setComments(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    fetchComments();
-  }, [movieId]);
-
-  // Handle comment submission
+  
   async function handleSubmit(event) {
     event.preventDefault();
-
-    try {
-      const response = await axios.post('https://example.com/comments', {
-        movieId,
-        text: commentText
-      });
-
-      setCommentText('');
-      setComments(comments => [...comments, response.data]);
-    } catch (error) {
-      console.error(error);
-    }
+    
+    // Create a new comment object
+    const newComment = { id: Date.now(), text: commentText };
+    
+    // Fetch existing comments from localStorage or create a new array if it doesn't exist
+    const existingComments = JSON.parse(localStorage.getItem(`comments_${movieId}`)) || [];
+    
+    // Add the new comment to the existing comments array
+    existingComments.push(newComment);
+    
+    // Save the updated comments array back to localStorage
+    localStorage.setItem(`comments_${movieId}`, JSON.stringify(existingComments));
+    
+    // Update the comments state to re-render the comment section with the new comment
+    setComments(existingComments);
+    
+    // Clear the comment text input
+    setCommentText('');
   }
-
-  if (!movie) {
-    return <p>Loading...</p>;
-  }
-
+  
   return (
     <div>
-      <div className='myMovie'>
-        <h1>{movie.Title}</h1>
-        <p>{`Year: ${movie.Year}`}</p>
-        <img src={movie.Poster} alt={`${movie.Title} Poster`} />
-        <p>{`Rated: ${movie.Rated}`}</p>
-      </div>
       <div className="myComment">
         <form onSubmit={handleSubmit}>
           <textarea value={commentText} onChange={event => setCommentText(event.target.value)} />
@@ -71,7 +43,6 @@ function CommentSection({ movieId }) {
         {comments.map(comment => (
           <div key={comment.id}>
             <p>{comment.text}</p>
-            <p>{`Posted by: ${comment.author} on ${comment.date}`}</p>
           </div>
         ))}
       </div>

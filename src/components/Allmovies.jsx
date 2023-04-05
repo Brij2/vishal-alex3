@@ -10,9 +10,11 @@ const Allmovies = (props) => {
           {props.movies?.length > 0 ? (
             <div className="container">
               {props.movies.map((movie) => (
+
                 <Link to={`/movies/${movie.imdbID}`}>
                 <MovieCard key={movie.imdbID} movie={movie} />
                 </Link>
+                
               ))}
             </div>
           ) : (
