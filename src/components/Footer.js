@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./Footer.css";
+import logo from '../Assets/Nav/aimovie-logo.png'
 
-const Footer = () => {
+
+const Footer = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <div className="footer">
       <div className="logo">
-        <img src="logo.png" alt="Logo" />
+        <img src={logo} alt="Logo" style={{'height':'15px','width':'90px'}} />
       </div>
       <div className="icons">
         <a href="https://www.instagram.com">
@@ -31,10 +33,10 @@ const Footer = () => {
         <a href="/about">About</a>
         <a href="/contact">Contact</a>
       </div>
-      <div className="search-bar">
+      <div className="search-bar" >
         <form>
           <div className="search-container">
-            <input type="text" placeholder="Search" />
+            <input type="text" placeholder="Search"   style={{'height':'30px'}}/>
             {/* <input
               type="text"
               value={searchTerm}

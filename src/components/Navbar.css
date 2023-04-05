@@ -1,97 +1,226 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ffffff;
-    padding: 20px;
-    border: 1 solid red;
-  }
-  
-  .navbar-left {
-    display: flex;
-    align-items: center;
-  }
-  
-  .navbar-logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #000000;
-  }
-  
-  .navbar-logo img {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-  }
-  
-  .navbar-logo span {
-    font-size: 24px;
-  }
-  
-  .navbar-search {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-  }
-  
-  .navbar-search input[type="text"] {
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-  }
-  
-  .navbar-search button[type="submit"] {
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: none;
-    background-color: #1e90ff;
-    color: #ffffff;
-    margin-left: 10px;
-    cursor: pointer;
-  }
-  
-  .navbar-nav {
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .nav-item {
-    list-style: none;
-  }
-  
-  .nav-link {
-    display: block;
-    text-decoration: none;
-    color: #000000;
-    padding: 10px;
-    margin-right: 10px;
-    border-radius: 5px;
-  }
-  
-  .nav-link:hover {
-    background-color: #1e90ff;
-    color: #ffffff;
-  }
-  
-  .navbar-right {
-    display: flex;
-    align-items: center;
-  }
-  
-  .navbar-right img {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
-  }
-  
-  .navbar-user {
-    display: flex;
-    align-items: center;
-  }
-  
-  .navbar-user img {
-    width: 1px;
-  }
+  background: linear-gradient(to bottom left, #171036, #1f115d, #1b0b74);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 10px;
+  color: white;
+  /* border: 0.1px solid red; */
+}
+
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #000000;
+}
+
+.navbar-logo img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.navbar-logo span {
+  font-size: 24px;
+}
+
+.navbar-search {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.navbar-search input[type="text"] {
+  padding: 10px;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+.navbar-search img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.navbar-search button[type="submit"] {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #1e90ff;
+  color: #ffffff;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.navbar-nav {
+  display: flex;
+  color: #fefcfc;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  color: white;
+  list-style: none;
+}
+
+.nav-link {
+  display: block;
+  text-decoration: none;
+  color: #fefcfc;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.nav-link:hover {
+  background-color: #1e90ff;
+  color: #ffffff;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-right img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-user img {
+  width: 1px;
+}
+
+
+.container.search {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 50px;
+  height: 30px;
+  padding-left: 10px;
+  margin: 0;
+}
+
+.container.search input {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  width: 100%;
+}
+
+.container.search img {
+  cursor: pointer;
+}
+
+.container.search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.container.search img {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.container.search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 10px;
+  background-color: transparent;
+}
+
+.container.search input::placeholder {
+  color: #aaa;
+}
+
+.container.search {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* add this */
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.container.search img {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.container.search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 10px;
+  background-color: transparent;
+  text-align: center; /* add this */
+}
+
+.container.search input::placeholder {
+  color: #aaa;
+}
+.container.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.container.search img {
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.container.search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 10px;
+  background-color: transparent;
+  text-align: center;
+}
+
+.container.search input::placeholder {
+  color: #aaa;
+}
+input[type="text"] {
+  width: 100%;
+  max-width: 250px; /* or any other desired maximum width */
+  height: 0px;
+}
+
