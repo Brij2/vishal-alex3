@@ -1,0 +1,135 @@
+import { useState, useEffect } from "react";
+import React from "react";
+import Navbar from "./components/Navbar";
+import AllMovies from "./components/Allmovies";
+import ContactPage from "./components/ContactPage";
+import AboutPage from "./components/AboutPage";
+import Footer from "./components/Footer";
+import MovieDetails from "./components/MovieDetails";
+import SignUpPage from "./components/SignUpPage";
+import SignInPage from "./components/SignInPage";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import bcrypt from "bcryptjs";
+
+const API_URL = "http://www.omdbapi.com?apikey=b6003d8a";
+
+const App = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [movies, setMovies] = useState([]);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(localStorage.getItem("currentUser")) || {
+      username: "Guest",
+      avatarUrl: "https://dummyimage.com/100x100/000/fff&text=Guest",
+    }
+  );
+  const Navigate = useNavigate();
+
+  useEffect(() => {
+    searchMovies("Batman");
+  }, []);
+
+  const searchMovies = async (title) => {
+    const response = await fetch(`${API_URL}&s=${title}`);
+    const data = await response.json();
+
+    setMovies(data.Search);
+  };
+
+  const getMovieRequest = async (searchTerm) => {
+    const url = `http://www.omdbapi.com/?s=${searchTerm}&apikey=263d22d8`;
+
+    const response = await fetch(url);
+    const responseJson = await response.json();
+
+    if (responseJson.Search) {
+      setMovies(responseJson.Search);
+    }
+  };
+
+  useEffect(() => {
+    getMovieRequest(searchTerm);
+  }, [searchTerm]);
+
+  const getMoviesOnSearch = (searchMovies) => {
+    setMovies(searchMovies);
+  };
+
+  const handleSignIn = (credentials) => {
+    try {
+      const usersData = JSON.parse(localStorage.getItem("users")) || [];
+      const user = usersData.find((u) => u.username === credentials.username);
+
+      if (user && bcrypt.compareSync(credentials.password, user.password)) {
+        setIsAuthenticated(true);
+        setCurrentUser(user);
+        localStorage.setItem("currentUser", JSON.stringify(user));
+      } else {
+        alert("Invalid username or password");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("An error occurred while signing in. Please try again.");
+    }
+  };
+
+  const handleSignUp = (userData) => {
+    try {
+      const usersData = JSON.parse(localStorage.getItem("users")) || [];
+
+      if (usersData.some((u) => u.username === userData.username)) {
+        alert("User already exists. Please choose a different username.");
+        return;
+      }
+
+      const salt = bcrypt.genSaltSync(10);
+      const hashedPassword = bcrypt.hashSync(userData.password, salt);
+      const newUser = {
+        avatarUrl: userData.avatarUrl,
+        username: userData.username,
+        password: hashedPassword,
+      };
+      usersData.push(newUser);
+      localStorage.setItem("users", JSON.stringify(usersData));
+    } catch (error) {
+      console.error(error);
+      alert("An error occurred while signing up. Please try again.");
+    }
+  };
+
+  const handleSignOut = () => {
+    localStorage.removeItem("currentUser");
+    setCurrentUser({
+      username: "Guest",
+      avatarUrl: "https://dummyimage.com/100x100/000/fff&text=Guest",
+    });
+    setIsAuthenticated(false);
+  };
+  return (
+    <BrowserRouter>
+      <Navbar myMovies={getMoviesOnSearch} />
+      <div className="container-fluid" style={{ padding: "0 50px" }}>
+        <Routes>
+          <Route exact path="/about" element={<AboutPage />} />
+          <Route exact path="/contact" element={<ContactPage />} />
+          <Route exact path="/signin" element={<SignInPage onSignIn={handleSignIn} />} />
+          <Route exact path="/signup" element={<SignUpPage onSignUp={handleSignUp} />} />
+          {isAuthenticated ? (
+            <Route exact path="/" element={<AllMovies movies={movies} />} />
+          ) : (
+            <Navigate to="/signin" />
+          )}
+          {isAuthenticated && (
+            <Route path="/movies/:id" element={<MovieDetails />} />
+          )}
+        </Routes>
+      </div>
+      <Footer
+        updateMovies={setMovies}
+        onSignOut={handleSignOut}
+        currentUser={currentUser}
+      />
+    </BrowserRouter>
+  );
+}  
+export default App;
