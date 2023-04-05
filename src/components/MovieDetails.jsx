@@ -11,7 +11,7 @@ const MovieDetails = () => {
     useEffect(() => {
       const fetchMovie = async () => {
         const response = await fetch(`https://www.omdbapi.com/?i=${id}&apikey=263d22d8`);
-        alert('aaaaaaaaaaaaa')
+        // alert('aaaaaaaaaaaaa')
         const data = await response.json();
         setMovie(data);
       };
@@ -28,10 +28,20 @@ const MovieDetails = () => {
             <div className="movie-details">
               <div className="movie-info">
                 <div className="movie-poster">
+                <div style={{position: 'relative'}}>
                   <img src={movie.Poster} alt={`${movie.Title} Poster`} />
+                  <p className='rounded' style={{
+                    position: 'absolute',
+                    top: '10px',
+                    left: '10px',
+                    margin: 0,
+                    backgroundColor: 'rgba(255, 255, 100, 0.5)',
+                    padding: '5px'
+                  }}>{`${movie.Year}`}</p>
+                </div>
+
                   <div className="movie-overlay">
                     <h1>{movie.Title}</h1>
-                    <p>{`Year: ${movie.Year}`}</p>
                     <p>{`Rated: ${movie.Rated}`}</p>
                     <p>{`IMDb Rating: ${movie.imdbRating}`}</p>
                   </div>
