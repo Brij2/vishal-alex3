@@ -83,3 +83,20 @@
     padding: 10px;
     margin:1px;
   }
+
+  .fas {
+    display: inline-block;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-style: normal;
+    font-size: 1rem;
+    line-height: 1;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .fa-star:before {
+    content: "\f005";
+  }
+  
