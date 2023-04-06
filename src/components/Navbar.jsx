@@ -64,8 +64,8 @@ const Navbar = (props) => {
         <div className="collapse navbar-collapse justify-content-end" id="navbarNav" style={{ marginLeft: "auto" }}>
           <div className="navbar-user d-flex align-items-center">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0" style={{ marginRight: "50px",'color':'white' }}>
-              <li className="nav-item px-4" style={{color:'white' }}>
-                <Link to="/" className="nav-link active" aria-current="page">
+              <li className="nav-item px-4" >
+                <Link to="/" className="nav-link " aria-current="page">
                   Home
                 </Link>
               </li>
@@ -82,7 +82,7 @@ const Navbar = (props) => {
             </ul>
             <img src={heart} alt="user" className="rounded-circle me-2" />
             <img src={props.pics} alt="user" className="rounded-circle me-2" style={{ height: '50px', width: '50px',color:'white' }} />
-            <Link>{props.user} </Link>
+            <Link style={{color:'white' }}>{props.user} </Link>
           </div>
         </div>
       </div>

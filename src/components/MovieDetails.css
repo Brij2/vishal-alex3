@@ -1,9 +1,28 @@
 .movie-container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     height: 100%;
   }
+  
+
+  .rating-containers {
+    display: flex !important;
+    /* row flex */
+    flex-direction: row !important;
+    /* align-items: center; */
+    /* margin-bottom: 20px; */
+  }
+  
+  .rating-label {
+    margin: 0;
+    padding-right: 5px;
+  }
+  
+  .rating-stars {
+    transform: scale(1);
+  }
+
   
   .movie-details {
     display: flex;
@@ -154,16 +173,8 @@
   border-radius: 5px;
 }
 
-.movie-details .rating-stars {
-  display: flex;
-  align-items: center;
-}
 
-.movie-details .rating-stars h1 {
-  font-size: 24px;
-  margin: 0;
-  text-align: center;
-}
+
 
 .movie-details .rating-stars i {
   font-size: 24px;
@@ -177,10 +188,10 @@
     align-items: stretch;
   }
 
-  .movie-details .rating-stars {
+  /* .movie-details .rating-stars {
     margin-top: 20px;
     justify-content: center;
-  }
+  } */
 }
 
 .movie-poster {

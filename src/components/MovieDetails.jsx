@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CommentSection from './CommentSection';
-import './MovieDetails.css';
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
@@ -61,18 +60,19 @@ const MovieDetails = () => {
                       </p>
                     </div>
 
-                    <div className="movie-overlay">
+                    <div className="movie-overlay ">
                       <h1>{movie.Title}</h1>
                     </div>
                   </div>
                   <div
-                    className="rating-stars container px-4"
-                    style={{ margin: '10px', padding: '10px', display: 'flex', alignItems: 'center' }}
+                    className="container px-4"
+                    style={{ margin: '0px', padding: '0px', display: 'flex', flexdirection: 'row' }}
                   >
-                    <span>
-                    <h5 style={{ marginRight: '10px', paddingRight: '25px' }}>Rate this Movie </h5>
-                    <div style={{ scale: '1' }} dangerouslySetInnerHTML={{ __html: getRatingStars(movie.imdbRating) }}></div>
-                    </span>
+                  <span class="rating-containers" style={{ display: 'flex', flexdirection: 'row'}}>
+                    <h5 class="rating-label">Rate this Movie &nbsp;</h5>
+                    <div class="" dangerouslySetInnerHTML={{ __html: getRatingStars(movie.imdbRating) }}></div>
+                  </span>
+
                   </div>
                 </div>
               </div>

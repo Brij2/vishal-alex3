@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import "./CommentSection.css";
 
 function CommentSection({ movieId }) {
   const [comments, setComments] = useState([]);
@@ -34,19 +35,26 @@ function CommentSection({ movieId }) {
   }
   
   return (
-    <div>
-      <div className="myComment">
-        <form onSubmit={handleSubmit}>
-          <textarea value={commentText} onChange={event => setCommentText(event.target.value)} />
-          <button type="submit">Submit Comment</button>
-        </form>
-        {comments.map(comment => (
-          <div key={comment.id}>
-            <p>{comment.text}</p>
-          </div>
-        ))}
-      </div>
+    <div class="comment-container">
+  <div class="myComment">
+    <form onSubmit={handleSubmit}>
+    <textarea
+  value={commentText}
+  onChange={event => setCommentText(event.target.value)}
+  className="comment-input"
+/>
+      <button type="submit">Submit Comment</button>
+    </form>
+    <div class="comments-list">
+      {comments.map(comment => (
+        <div key={comment.id}>
+          <p>{comment.text}</p>
+        </div>
+      ))}
     </div>
+  </div>
+</div>
+
   );
 }
 
