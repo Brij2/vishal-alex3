@@ -47,17 +47,19 @@ const Navbar = (props) => {
         <form className="d-flex ms-auto">
           <div className="container search px-4">
             <img
+            
               className="px-0"
               src={SearchIcon}
               alt="search"
               onClick={() => searchMovies(searchTerm)}
             />
             <input
+            style={{ padding: "7px" }}
               className="rounded-pill px-2"
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Search for movies..."
+              placeholder="Search"
             />
           </div>
         </form>
@@ -65,7 +67,7 @@ const Navbar = (props) => {
           <div className="navbar-user d-flex align-items-center">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0" style={{ marginRight: "50px",'color':'white' }}>
               <li className="nav-item px-4" style={{color:'white' }}>
-                <Link to="/" className="nav-link active" aria-current="page">
+                <Link to="/all" className="nav-link active" aria-current="page">
                   Home
                 </Link>
               </li>

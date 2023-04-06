@@ -117,7 +117,7 @@ const App = () => {
           
           <Route
             exact
-            path="/"
+            path="/all"
             element={
               <Allmovies
                 movies={movies}
@@ -126,7 +126,7 @@ const App = () => {
           />
           <Route path="/movies/:id" element={<MovieDetails/>} />
           <Route path="/signin" element={ <SignInPage  onSignIn={handleSignIn} />} />
-          <Route path="/signup" element={ <SignUpPage onSignUp={handleSignUp} />} />
+          <Route path="/" element={ <SignUpPage onSignUp={handleSignUp} />} />
         </Routes>
       </div>
       <Footer updateMovies={setMovies} />

@@ -12,7 +12,7 @@ const SignInPage=({ onSignIn })=> {
       event.preventDefault();
       onSignIn({ username, password, avatarUrl });
       // Objects are not valid as a React child (found: object with keys {avatarUrl, username, password}). If you meant to render a collection of children, use an array instead.
-      Navigate('/')
+      Navigate("/all")
 
     };
   
